@@ -1,0 +1,8 @@
+Generate API Key
+Your API key for madalinapuimp@gmail.com is:
+
+Fa9LKzqaJ3DaYg3eVuRv18uwPlQTgcDRId3wQIcx
+
+You can start using this key to make web service requests. Simply pass your key in the URL when making a web request. Here's an example:
+
+https://api.nasa.gov/planetary/apod?api_key=Fa9LKzqaJ3DaYg3eVuRv18uwPlQTgcDRId3wQIcx
