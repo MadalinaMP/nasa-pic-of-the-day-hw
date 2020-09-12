@@ -2,12 +2,15 @@ var baseUrl = new URL("https://api.nasa.gov/planetary/apod");
 var myAPIkey = "Fa9LKzqaJ3DaYg3eVuRv18uwPlQTgcDRId3wQIcx";
 var buton = document.getElementById("buton");
 var allInfo = document.getElementById("allInfo");
+var myLoader = document.getElementById("loaderPosition");
 
 // allInfo.style.display = "none";
 
 buton.addEventListener("click", getPicOfTheDay);
 
 function getPicOfTheDay() {
+  displayLoader();
+
   baseUrl.searchParams.set("api_key", myAPIkey);
   setDateFilter();
 
@@ -27,7 +30,8 @@ function getPicOfTheDay() {
     })
     .catch(function () {
       displayError("Something went wrong! Try again!");
-    });
+    })
+    .finally(hideLoader);
 }
 
 function getInfo(current) {
@@ -115,4 +119,16 @@ function displayError(errorMessage) {
 
   errorDiv.style.color = "red";
   errorDiv.style.fontWeight = "bold";
+}
+
+function displayLoader() {
+  container.style.opacity = 0;
+  allInfo.style.opacity = 0;
+  myLoader.style.display = "block";
+}
+
+function hideLoader() {
+  container.style.opacity = 1;
+  allInfo.style.opacity = 1;
+  myLoader.style.display = "none";
 }
