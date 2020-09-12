@@ -36,6 +36,7 @@ function getInfo(current) {
   var theTitle = document.createElement("h1");
   theTitle.innerText = current.title;
 
+  theTitle.style.marginTop = "60px";
   theTitle.style.marginBottom = "20px";
   theTitle.style.color = "rgb(126, 91, 215)";
 
