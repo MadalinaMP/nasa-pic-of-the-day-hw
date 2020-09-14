@@ -4,8 +4,6 @@ var buton = document.getElementById("buton");
 var allInfo = document.getElementById("allInfo");
 var myLoader = document.getElementById("loaderPosition");
 
-// allInfo.style.display = "none";
-
 buton.addEventListener("click", getPicOfTheDay);
 
 function getPicOfTheDay() {
@@ -20,11 +18,14 @@ function getPicOfTheDay() {
     })
     .then(function (jsonResp) {
       console.log(jsonResp);
+      cleanInfoDiv();
       if (jsonResp.msg) {
         displayError(jsonResp.msg);
       } else if (jsonResp.media_type == "image") {
+        displayPicVidInfoInHTML(jsonResp);
         displayPicture(jsonResp);
       } else if (jsonResp.media_type == "video") {
+        displayPicVidInfoInHTML(jsonResp);
         displayVideo(jsonResp);
       }
     })
@@ -34,7 +35,16 @@ function getPicOfTheDay() {
     .finally(hideLoader);
 }
 
-function getInfo(current) {
+function cleanInfoDiv() {
+  allInfo.innerHTML = `
+  <div id="infoDiv"></div>
+  <div id="picDiv"></div>
+  <div id="vidDiv"></div>
+
+  <div id="errorDiv"></div>`;
+}
+
+function displayPicVidInfoInHTML(current) {
   var infoDiv = document.getElementById("infoDiv");
 
   var theTitle = document.createElement("h1");
@@ -76,8 +86,6 @@ function getInfo(current) {
 function displayPicture(todaysPicture) {
   var picDiv = document.getElementById("picDiv");
 
-  getInfo(todaysPicture);
-
   var dailyPic = document.createElement("img");
   dailyPic.src = todaysPicture.url;
 
@@ -90,8 +98,6 @@ function displayPicture(todaysPicture) {
 
 function displayVideo(todaysVideo) {
   var vidDiv = document.getElementById("vidDiv");
-
-  getInfo(todaysVideo);
 
   var dailyVid = document.createElement("iframe");
   dailyVid.src = todaysVideo.url;
