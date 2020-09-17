@@ -7,7 +7,7 @@ var myLoader = document.getElementById("loaderPosition");
 buton.addEventListener("click", getPicOfTheDay);
 
 function getPicOfTheDay() {
-  displayLoader();
+  displayLoader(); //loader
 
   baseUrl.searchParams.set("api_key", myAPIkey);
   setDateFilter();
